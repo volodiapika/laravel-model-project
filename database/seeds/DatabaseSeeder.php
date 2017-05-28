@@ -1,7 +1,19 @@
 <?php
-
+/**
+ * DatabaseSeeder
+ *
+ * @package DatabaseSeeder
+ */
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 
+/**
+ * DatabaseSeeder
+ *
+ * @package DatabaseSeeder
+ *
+ * @since 1.0.1
+ */
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -11,6 +23,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        Model::unguard();
+
+        $this->call(AlbumTableSeeder::class);
+        $this->command->info('New albums');
+
+        $this->call(PhotoTableSeeder::class);
+        $this->command->info('New photos');
+
+        Model::reguard();
     }
 }
